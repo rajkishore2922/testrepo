@@ -1,0 +1,40 @@
+ Two main considerations for legality of web scraping:
+
+Scraping often violates the terms of service of the target website. The terms of service of established data-heavy sites almost invariably prohibit data scraping. Violating the terms of service doesn't mean that you've done something illegal. But it does mean that the website might be able to sue you for breach of contract.
+
+Publishing scraped content may be a breach of copyright. Depending on what the scraped content is and what you do with it, it may be a violation of the copyright holder's rights. Facts themselves are not subject to copyright in the US, but creative expression is. You may be able to rely on the fair use defense if you use only portions of someone else's creative expression in a way that adds value and is not mere regurgitation.
+
+Automated Data Collection Terms- Facebook
+https://www.facebook.com/apps/site_scraping_tos_terms.php?hc_location=ufi
+
+Automated Data Collection Terms - Google
+
+
+Google disallows automated access in their TOS, so if you accept their terms you would break them.
+
+That said, I know of no lawsuit from Google against a scraper. Even Microsoft scraped Google, they powered their search engine Bing with it. They got caught in 2011 red handed :)
+
+There are two options to scrape Google results:
+
+a) Use their API
+
+    You can issue around 40 requests per hour You are limited to what they give you, it's not really useful if you want to track ranking positions or what a real user would see. That's something you are not allowed to gather.
+
+    If you want a higher amount of API requests you need to pay.
+    60 requests per hour cost 2000 USD per year, more queries require a custom deal.
+
+b) Scrape the normal result pages
+
+    Here comes the tricky part. It is possible to scrape the normal result pages. Google does not allow it.
+    If you scrape at a rate higher than 8 (updated from 15) keyword requests per hour you risk detection, higher than 10/h (updated from 20) will get you blocked from my experience.
+    By using multiple IPs you can up the rate, so with 100 IP addresses you can scrape up to 1000 requests per hour. (24k a day) (updated)
+    There is an open source search engine scraper written in PHP at http://scraping.compunect.com It allows to reliable scrape Google, parses the results properly and manages IP addresses, delays, etc. So if you can use PHP it's a nice kickstart, otherwise the code will still be useful to learn how it is done.
+
+c) Alternatively use a scraping service 
+
+    Recently a customer of mine had a huge search engine scraping requirement but it was not 'ongoing', it's more like one huge refresh per month.
+    In this case I could not find a self-made solution that's 'economic'.
+    I used the service at http://scraping.services instead. They also provide open source code and so far it's running well (several thousand resultpages per hour during the refreshes)
+    The downside is that such a service means that your solution is "bound" to one professional supplier, the upside is that it was a lot cheaper than the other options I evaluated (and faster in our case)
+    One option to reduce the dependency on one company is to make two approaches at the same time. Using the scraping service as primary source of data and falling back to a proxy based solution like described at 2) when required.
+
